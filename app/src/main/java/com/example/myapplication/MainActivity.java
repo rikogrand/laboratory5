@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<User> users = new ArrayList<User>();
+    ArrayList<Game> games = new ArrayList<Game>();
     ListView usersList;
 
     @Override
@@ -25,10 +25,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setInitialData() {
-        users.add(new User("Dota 2", 2000, R.drawable.dota));
-        users.add(new User("CSGO", 2015, R.drawable.csgo));
-        users.add(new User("CS 2", 2025, R.drawable.cs));
-        users.add(new User("Valorant", 2020, R.drawable.valorant));
+        games.add(new Game("Dota 2", 2000, R.drawable.dota));
+        games.add(new Game("CSGO", 2015, R.drawable.csgo));
+        games.add(new Game("CS 2", 2025, R.drawable.cs));
+        games.add(new Game("Valorant", 2020, R.drawable.valorant));
     }
 }
 

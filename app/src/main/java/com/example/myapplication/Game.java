@@ -1,12 +1,12 @@
 package com.example.myapplication;
 
-public class User {
+public class Game {
     private String name;
     private int year;
 
     private int photo;
 
-    public User(String name, int year,  int photo) {
+    public Game(String name, int year,  int photo) {
         this.name = name;
         this.year = year;
 

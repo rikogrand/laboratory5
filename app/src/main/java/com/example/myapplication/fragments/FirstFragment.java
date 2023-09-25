@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.myapplication.Game;
 import com.example.myapplication.R;
-import com.example.myapplication.StateAdapter;
-import com.example.myapplication.User;
+import com.example.myapplication.GameAdapter;
 import com.example.myapplication.databinding.FragmentFirstListBinding;
 
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ public class FirstFragment extends Fragment {
         super(R.layout.fragment_first);
     }
 
-    public StateAdapter userAdapter;
-    public static List<User> userList = new ArrayList<>();
+    public GameAdapter gameAdapter;
+    public static List<Game> gameList = new ArrayList<>();
     private FragmentFirstListBinding binding;
 
     @Override
@@ -42,41 +42,42 @@ public class FirstFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUser();
-        userListInit();
+        setGame();
+        gameListInit();
         ShowNewGameFragment();
     }
 
-    private void userListInit() {
-        if (userAdapter == null) {
-            userAdapter = new StateAdapter(
+    private void gameListInit() {
+        if (gameAdapter == null) {
+            gameAdapter = new GameAdapter(
                     getContext(),
                     R.layout.list_item,
-                    userList);
+                    gameList);
         }
-        binding.list.setAdapter(userAdapter);
+        binding.list.setAdapter(gameAdapter);
         binding.list.setOnItemLongClickListener((adapterView, view, i, l) -> {
             Toast.makeText(getContext(),
                     String.valueOf(i),
                     Toast.LENGTH_LONG).show();
-
+                gameAdapter.remove(gameAdapter.getItem(i));
+            return true;
         });
 
     }
 
-    public void setUser() {
-        if (!userList.isEmpty()) return;
-        userList.add(new User("Dota 2", 2000, R.drawable.dota));
-        userList.add(new User("CSGO", 2015, R.drawable.csgo));
-        userList.add(new User("CS 2", 2025, R.drawable.cs));
-        userList.add(new User("Valorant", 2020, R.drawable.valorant));
+    public void setGame() {
+        if (!gameList.isEmpty()) return;
+        gameList.add(new Game("Dota 2", 2000, R.drawable.dota));
+        gameList.add(new Game("CSGO", 2015, R.drawable.csgo));
+        gameList.add(new Game("CS 2", 2025, R.drawable.cs));
+        gameList.add(new Game("Valorant", 2020, R.drawable.valorant));
     }
 
     public void ShowNewGameFragment() {
         binding.addGame.setOnClickListener(v -> {
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.main_fragment, new NewGameFragment(userAdapter), "new_game_fragment")
+                    .replace(R.id.main_fragment, new NewGameFragment(gameAdapter), "new_game_fragment")
                     .addToBackStack("new_game_fragment")
                     .commit();
         });

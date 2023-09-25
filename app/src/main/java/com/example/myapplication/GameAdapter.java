@@ -8,18 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
 import java.util.List;
 
-public class StateAdapter extends ArrayAdapter<User> {
+public class GameAdapter extends ArrayAdapter<Game> {
 
     private LayoutInflater inflater;
     private int layout;
-    private List<User> users;
-    public StateAdapter(Context context, int resource, List<User> users){
-        super(context, resource, users);
-        this.users = users;
+    private List<Game> games;
+    public GameAdapter(Context context, int resource, List<Game> games){
+        super(context, resource, games);
+        this.games = games;
         this.layout = resource;
         this.inflater = LayoutInflater.from(context);
     }
@@ -29,10 +27,10 @@ public class StateAdapter extends ArrayAdapter<User> {
         ImageView photoView = view.findViewById(R.id.photo);
         TextView nameView = view.findViewById(R.id.name);
         TextView yearView = view.findViewById(R.id.year);
-        User user = users.get(position);
-        photoView.setImageResource(user.getPhoto());
-        nameView.setText(user.getName());
-        yearView.setText(String.format("%d", user.getYear()));
+        Game game = games.get(position);
+        photoView.setImageResource(game.getPhoto());
+        nameView.setText(game.getName());
+        yearView.setText(String.format("%d", game.getYear()));
 
         return view;
     }

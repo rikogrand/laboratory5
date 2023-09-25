@@ -11,18 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.myapplication.Game;
+import com.example.myapplication.GameAdapter;
 import com.example.myapplication.R;
-import com.example.myapplication.StateAdapter;
-import com.example.myapplication.User;
 import com.example.myapplication.databinding.FragmentNewGameBinding;
 
 import java.util.Random;
 
 public class NewGameFragment extends Fragment {
     private FragmentNewGameBinding binding;
-    private StateAdapter adapter;
+    private GameAdapter adapter;
 
-    public NewGameFragment(StateAdapter adapter) {
+    public NewGameFragment(GameAdapter adapter) {
 
         this.adapter = adapter;
     }
@@ -76,7 +76,7 @@ public class NewGameFragment extends Fragment {
                 photoId = R.drawable.dota;
             }
             if (gameYear == 0 || gameName.equals("")) return;
-            User Game2Add = new User(gameName, gameYear, photoId);
+            Game Game2Add = new Game(gameName, gameYear, photoId);
             adapter.add(Game2Add);
             requireActivity().getSupportFragmentManager().popBackStack();
         });
